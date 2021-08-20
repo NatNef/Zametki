@@ -1,0 +1,2 @@
+rootProject.name = "Zametki"
+include ':app'
