@@ -18,6 +18,7 @@ public class ZametkiFragment extends Fragment {
 
     Menu currentMenu;
     boolean isLandScape;
+    private Object LinearLayout;
 
     public static ZametkiFragment newInstance() {
         return new ZametkiFragment();
@@ -32,13 +33,19 @@ public class ZametkiFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_zametki, container,false);
         // выводим список (заполняем пустой макет)
         LinearLayout linearLayout = (LinearLayout) view;
+
+
+        //TextView списки
         String[] menu_zametki = getResources().getStringArray(R.array.menu_zametki);
 
+        LayoutInflater layoutInflater = getLayoutInflater();
         for (int i =0;i<menu_zametki.length; i++){
+
             String name = menu_zametki[i];
-            TextView textView = new TextView(getContext());
-            textView.setText(name);
-            textView.setTextSize(30);
+            TextView textView =(TextView) LayoutInflater.inflate(R.layout.item, LinearLayout, false);
+//            TextView textView = new TextView(getContext());
+//            textView.setText(name);
+//            textView.setTextSize(30);
             linearLayout.addView(textView);
             int finalI = i;
             textView.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +57,8 @@ public class ZametkiFragment extends Fragment {
                     isLandScape = (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE);
                     showOpisanieZametki();
                 }
+
+
 
                 private void showOpisanieZametki() {
                     if(isLandScape){
